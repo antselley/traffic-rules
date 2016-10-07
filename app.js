@@ -13,19 +13,44 @@ body.onkeydown = function(e){
 
     displayMessage(e.keyCode);
 
-    // to move the taxi forward...
-    // when the right arrow is pressed
-    //work with `taxiPositionCounter`
+////Right Arrow////
+    if (e.keyCode === 39) {
+      var currentLocation = calculateTaxiLocation(taxiPositionCounter);
+      taxiPositionCounter += 1;
+      var newLocation = calculateTaxiLocation(taxiPositionCounter);
+      moveTaxi(currentLocation,newLocation);
+    }
 
-    // call `calculateTaxiLocation` to get a taxi location className store it in a variable.
-    // increment the `taxiPositionCounter`
-    // call `calculateTaxiLocation` to the new a taxi location className store it in another variable.
+////Left Arrow////
+    if (e.keyCode === 37) {
+      var currentLocation = calculateTaxiLocation(taxiPositionCounter);
+      taxiPositionCounter -= 1;
+      var newLocation = calculateTaxiLocation(taxiPositionCounter);
+      moveTaxi(currentLocation,newLocation);
+    }
 
-    //pass both to the `moveTaxi( firstClassName, secondClassName)` function
-    //
+////Up Arrow////
+    if (e.keyCode === 38) {
+      //turn the current traffic light red.
+      var lightAhead = new TrafficLight(taxiPositionCounter);
+      lightAhead.red();
+    }
+
+
+////Down Arrow////
+  if (e.keyCode === 40) {
+      var lightInFront = new TrafficLight(taxiPositionCounter);
+      lightInFront.green();
+    }
+
+//// Turning the light Orange ////
+      if (e.keyCode === 79) {
+          var lightInFront = new TrafficLight(taxiPositionCounter);
+          lightInFront.orange();
+        }
 
     var tl = new TrafficLight(2);
-    
+
     tl.orange();
 
 
