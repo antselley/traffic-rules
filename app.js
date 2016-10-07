@@ -16,7 +16,13 @@ body.onkeydown = function(e){
 ////Right Arrow////
     if (e.keyCode === 39) {
       var currentLocation = calculateTaxiLocation(taxiPositionCounter);
-      taxiPositionCounter += 1;
+      var lightAhead = new TrafficLight(taxiPositionCounter);
+      if (lightAhead.state() === "red") {
+          taxiPositionCounter += 0;
+        }
+        else {
+          taxiPositionCounter += 1;
+        }
       var newLocation = calculateTaxiLocation(taxiPositionCounter);
       moveTaxi(currentLocation,newLocation);
     }
